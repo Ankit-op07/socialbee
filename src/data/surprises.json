@@ -1,0 +1,375 @@
+[
+  {
+    "id": "17fc687d",
+    "templateId": "valentine-hearts",
+    "senderName": "Ankit",
+    "recipientName": "Rohit",
+    "message": "i love you",
+    "createdAt": "2026-02-08T10:06:40.896Z",
+    "viewed": false
+  },
+  {
+    "id": "06c7d3bd",
+    "templateId": "birthday-blast",
+    "senderName": "Ankit",
+    "recipientName": "Rohit",
+    "message": "happy birthday",
+    "createdAt": "2026-02-08T10:08:21.264Z",
+    "viewed": false
+  },
+  {
+    "id": "bae992a7",
+    "templateId": "birthday-blast",
+    "senderName": "akash",
+    "recipientName": "rohit",
+    "message": "yo",
+    "createdAt": "2026-02-08T10:08:57.311Z",
+    "viewed": false
+  },
+  {
+    "id": "6d92f270",
+    "templateId": "valentine-hearts",
+    "senderName": "ankit",
+    "recipientName": "fdsf",
+    "message": "sfsf",
+    "createdAt": "2026-02-08T12:08:48.026Z",
+    "viewed": false
+  },
+  {
+    "id": "dbf2b4db",
+    "templateId": "be-my-valentine",
+    "senderName": "Raj",
+    "recipientName": "Priya",
+    "message": "Every moment with you feels like magic. Will you be my Valentine? Every moment with you feels like magic. Will you be my Valentine?",
+    "createdAt": "2026-02-08T12:16:51.277Z",
+    "viewed": false
+  },
+  {
+    "id": "ba1d1de0",
+    "templateId": "be-my-valentine",
+    "senderName": "edaed",
+    "recipientName": "werw",
+    "message": "wd",
+    "createdAt": "2026-02-08T12:23:17.497Z",
+    "viewed": false
+  },
+  {
+    "id": "037afe0a",
+    "templateId": "be-my-valentine",
+    "senderName": "dsds",
+    "recipientName": "sfs",
+    "message": "sfsf",
+    "createdAt": "2026-02-08T17:38:58.192Z",
+    "viewed": false
+  },
+  {
+    "id": "0b3c37c2",
+    "templateId": "be-my-valentine",
+    "senderName": "ankit",
+    "recipientName": "nagar",
+    "message": "love",
+    "createdAt": "2026-02-08T17:40:12.805Z",
+    "viewed": false
+  },
+  {
+    "id": "ba3c3112",
+    "templateId": "be-my-valentine",
+    "senderName": "adad",
+    "recipientName": "ada",
+    "message": "ada",
+    "createdAt": "2026-02-08T17:40:41.672Z",
+    "viewed": false
+  },
+  {
+    "id": "a607813d",
+    "templateId": "be-my-valentine",
+    "senderName": "ankit",
+    "recipientName": "nupur",
+    "message": "i love you baby",
+    "createdAt": "2026-02-08T17:49:39.266Z",
+    "viewed": false
+  },
+  {
+    "id": "30889570",
+    "templateId": "valentine-escape",
+    "senderName": "John",
+    "recipientName": "Sarah",
+    "message": "You make my world brighter!",
+    "createdAt": "2026-02-08T17:58:00.637Z",
+    "viewed": false
+  },
+  {
+    "id": "73924c5f",
+    "templateId": "valentine-heart-explosion",
+    "senderName": "adad",
+    "recipientName": "adad",
+    "message": "ada",
+    "createdAt": "2026-02-08T18:04:43.381Z",
+    "viewed": false
+  },
+  {
+    "id": "a3e1e355",
+    "templateId": "valentine-spin-wheel",
+    "senderName": "Ankit",
+    "recipientName": "Nagar",
+    "message": "i love you",
+    "createdAt": "2026-02-08T18:18:18.197Z",
+    "viewed": false
+  },
+  {
+    "id": "55146e2e",
+    "templateId": "valentine-heart-explosion",
+    "senderName": "Ankit",
+    "recipientName": "nagar",
+    "message": "sfsf",
+    "createdAt": "2026-02-08T18:19:40.062Z",
+    "viewed": false
+  },
+  {
+    "id": "58aabe3d",
+    "templateId": "valentine-fortune-heart",
+    "senderName": "csc",
+    "recipientName": "cscs",
+    "message": "cs",
+    "createdAt": "2026-02-08T18:20:10.759Z",
+    "viewed": false
+  },
+  {
+    "id": "b92e97c2",
+    "templateId": "valentine-escape",
+    "senderName": "Ankit",
+    "recipientName": "Nupur",
+    "message": "i love you baby",
+    "createdAt": "2026-02-08T18:20:51.294Z",
+    "viewed": false
+  },
+  {
+    "id": "fa393367",
+    "templateId": "love-letter-reveal",
+    "senderName": "ankit",
+    "recipientName": "nupur",
+    "message": "sad",
+    "createdAt": "2026-02-08T18:21:41.177Z",
+    "viewed": false
+  },
+  {
+    "id": "ec5c1103",
+    "templateId": "valentine-love-story",
+    "senderName": "Ankit",
+    "recipientName": "Nagar",
+    "message": "love",
+    "createdAt": "2026-02-09T06:44:20.394Z",
+    "viewed": false,
+    "storyPages": [
+      {
+        "id": "page-1",
+        "title": "Chapter 1: The Beginning",
+        "content": "When I first saw you, my heart knew something magical was about to happen...",
+        "interactionType": "tap-to-reveal"
+      },
+      {
+        "id": "page-2",
+        "title": "Chapter 2: Growing Closer",
+        "content": "Every moment with you became a treasure I never knew I was looking for...",
+        "interactionType": "swipe-hearts"
+      },
+      {
+        "id": "page-3",
+        "title": "Chapter 3: The Realization",
+        "content": "I realized you were not just someone special - you were my everything...",
+        "interactionType": "hold-to-fill"
+      },
+      {
+        "id": "page-4",
+        "title": "Chapter 4: My Promise",
+        "content": "I promise to love you, cherish you, and make you smile every single day...",
+        "interactionType": "scratch-reveal"
+      },
+      {
+        "id": "page-5",
+        "title": "Chapter 5: The Question",
+        "content": "And now, I have one very important question to ask you...",
+        "interactionType": "puzzle-piece"
+      }
+    ],
+    "finalMessage": "love"
+  },
+  {
+    "id": "4038d854",
+    "templateId": "valentine-escape",
+    "senderName": "Ankit",
+    "recipientName": "Rohit",
+    "message": "love",
+    "createdAt": "2026-02-09T06:45:36.918Z",
+    "viewed": false
+  },
+  {
+    "id": "badc3721",
+    "templateId": "valentine-escape",
+    "senderName": "sfs",
+    "recipientName": "sfs",
+    "message": "sfs",
+    "createdAt": "2026-02-09T06:46:00.501Z",
+    "viewed": false
+  },
+  {
+    "id": "479de878",
+    "templateId": "valentine-love-story",
+    "senderName": "Ankit",
+    "recipientName": "Nupur",
+    "message": "You are the love of my life!",
+    "createdAt": "2026-02-09T06:52:43.196Z",
+    "viewed": false,
+    "storyPages": [
+      {
+        "id": "page-1",
+        "title": "Chapter 1: The Beginning",
+        "content": "When I first saw you, my heart knew something magical was about to happen...",
+        "interactionType": "tap-to-reveal"
+      },
+      {
+        "id": "page-2",
+        "title": "Chapter 2: Growing Closer",
+        "content": "Every moment with you became a treasure I never knew I was looking for...",
+        "interactionType": "swipe-hearts"
+      },
+      {
+        "id": "page-3",
+        "title": "Chapter 3: The Realization",
+        "content": "I realized you were not just someone special - you were my everything...",
+        "interactionType": "hold-to-fill"
+      },
+      {
+        "id": "page-4",
+        "title": "Chapter 4: My Promise",
+        "content": "I promise to love you, cherish you, and make you smile every single day...",
+        "interactionType": "scratch-reveal"
+      },
+      {
+        "id": "page-5",
+        "title": "Chapter 5: The Question",
+        "content": "And now, I have one very important question to ask you...",
+        "interactionType": "puzzle-piece"
+      }
+    ],
+    "finalMessage": "You are the love of my life!"
+  },
+  {
+    "id": "8c5a5396",
+    "templateId": "valentine-spin-wheel",
+    "senderName": "Rahul",
+    "recipientName": "nupur",
+    "message": "ada",
+    "createdAt": "2026-02-09T17:59:09.524Z",
+    "viewed": false
+  },
+  {
+    "id": "b4163e51",
+    "templateId": "valentine-escape",
+    "senderName": "sf",
+    "recipientName": "fsf",
+    "message": "sfs",
+    "createdAt": "2026-02-09T17:59:42.317Z",
+    "viewed": false
+  },
+  {
+    "id": "c52019e8",
+    "templateId": "valentine-escape",
+    "senderName": "Test",
+    "recipientName": "Love",
+    "message": "You are amazing!",
+    "createdAt": "2026-02-09T18:09:42.731Z",
+    "viewed": false
+  },
+  {
+    "id": "4ace00dd",
+    "templateId": "valentine-escape",
+    "senderName": "sf",
+    "recipientName": "fsf",
+    "message": "sfssfs",
+    "createdAt": "2026-02-09T18:13:34.546Z",
+    "viewed": false,
+    "imageUrl": "https://www.istockphoto.com/photos/valentines-couple-indian"
+  },
+  {
+    "id": "f6776a6c",
+    "templateId": "valentine-escape",
+    "senderName": "ddgfdg",
+    "recipientName": "dgdg",
+    "message": "egegg",
+    "createdAt": "2026-02-09T19:21:23.116Z",
+    "viewed": false
+  },
+  {
+    "id": "76a8ac67",
+    "templateId": "valentine-escape",
+    "senderName": "Test",
+    "recipientName": "Love",
+    "message": "dfdf",
+    "createdAt": "2026-02-09T19:30:41.887Z",
+    "viewed": false,
+    "musicUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+  },
+  {
+    "id": "6f0ff251",
+    "templateId": "valentine-escape",
+    "senderName": "ddvd",
+    "recipientName": "dvvd",
+    "message": "ssf",
+    "createdAt": "2026-02-09T19:48:50.146Z",
+    "viewed": false,
+    "imageUrl": "/uploads/1770666530116-1w2w0f.png",
+    "musicUrl": "youtube:2Vv-BfVoq4g"
+  },
+  {
+    "id": "399c158c",
+    "templateId": "valentine-escape",
+    "senderName": "efd",
+    "recipientName": "dvdv",
+    "message": "dvdb",
+    "createdAt": "2026-02-09T19:54:36.650Z",
+    "viewed": false,
+    "imageUrl": "/uploads/1770666876637-z85yp7.png",
+    "musicUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3"
+  },
+  {
+    "id": "1f8820a7",
+    "templateId": "valentine-escape",
+    "senderName": "TestTest",
+    "recipientName": "Love",
+    "message": "I love you so much!",
+    "createdAt": "2026-02-09T19:56:22.721Z",
+    "viewed": false,
+    "musicUrl": "https://cdn.pixabay.com/download/audio/2021/11/25/audio_cb33d17e43.mp3"
+  },
+  {
+    "id": "6a994b1f",
+    "templateId": "valentine-escape",
+    "senderName": "Me",
+    "recipientName": "Test User",
+    "message": "Test message for music autoplay",
+    "createdAt": "2026-02-09T20:00:06.554Z",
+    "viewed": false,
+    "musicUrl": "https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0c6ff1baa.mp3"
+  },
+  {
+    "id": "d0fe3833",
+    "templateId": "valentine-escape",
+    "senderName": "Ankit",
+    "recipientName": "Nupur",
+    "message": "i love u",
+    "createdAt": "2026-02-09T20:02:06.606Z",
+    "viewed": false,
+    "musicUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3"
+  },
+  {
+    "id": "f7789e69",
+    "templateId": "valentine-love-lock",
+    "senderName": "xvv",
+    "recipientName": "svss",
+    "message": "sdvs",
+    "createdAt": "2026-02-09T20:06:59.887Z",
+    "viewed": false,
+    "musicUrl": "https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0c6ff1baa.mp3"
+  }
+]
