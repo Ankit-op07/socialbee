@@ -1,34 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
-
-const UPLOAD_DIR = path.join(process.cwd(), 'public/uploads');
-
-// Ensure uploads directory exists
-async function ensureUploadDir() {
-    try {
-        await fs.access(UPLOAD_DIR);
-    } catch {
-        await fs.mkdir(UPLOAD_DIR, { recursive: true });
-    }
-}
-
-// Generate unique filename
-function generateFileName(originalName: string): string {
-    const timestamp = Date.now();
-    const random = Math.random().toString(36).substring(2, 8);
-    const ext = path.extname(originalName).toLowerCase();
-    return `${timestamp}-${random}${ext}`;
-}
+import { put } from '@vercel/blob';
 
 // Allowed file types
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
 const ALLOWED_AUDIO_TYPES = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/mp4', 'audio/x-m4a'];
 
+// Generate unique filename
+function generateFileName(originalName: string): string {
+    const timestamp = Date.now();
+    const random = Math.random().toString(36).substring(2, 8);
+    const ext = originalName.split('.').pop()?.toLowerCase() || 'bin';
+    return `${timestamp}-${random}.${ext}`;
+}
+
 export async function POST(request: NextRequest) {
     try {
-        await ensureUploadDir();
-
         const formData = await request.formData();
         const imageFile = formData.get('image') as File | null;
         const musicFile = formData.get('music') as File | null;
@@ -53,10 +39,11 @@ export async function POST(request: NextRequest) {
             }
 
             const imageFileName = generateFileName(imageFile.name);
-            const imagePath = path.join(UPLOAD_DIR, imageFileName);
-            const imageBuffer = Buffer.from(await imageFile.arrayBuffer());
-            await fs.writeFile(imagePath, imageBuffer);
-            result.imageUrl = `/uploads/${imageFileName}`;
+            const imageBlob = await put(`uploads/images/${imageFileName}`, imageFile, {
+                access: 'public',
+                contentType: imageFile.type
+            });
+            result.imageUrl = imageBlob.url;
         }
 
         // Handle music upload
@@ -77,10 +64,11 @@ export async function POST(request: NextRequest) {
             }
 
             const musicFileName = generateFileName(musicFile.name);
-            const musicPath = path.join(UPLOAD_DIR, musicFileName);
-            const musicBuffer = Buffer.from(await musicFile.arrayBuffer());
-            await fs.writeFile(musicPath, musicBuffer);
-            result.musicUrl = `/uploads/${musicFileName}`;
+            const musicBlob = await put(`uploads/audio/${musicFileName}`, musicFile, {
+                access: 'public',
+                contentType: musicFile.type
+            });
+            result.musicUrl = musicBlob.url;
         }
 
         if (!result.imageUrl && !result.musicUrl) {
@@ -93,8 +81,15 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(result);
     } catch (error) {
         console.error('Upload error:', error);
+
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+
         return NextResponse.json(
-            { error: 'Failed to upload files' },
+            {
+                error: 'Failed to upload files',
+                details: process.env.NODE_ENV === 'development' ? errorMessage : undefined,
+                hint: 'Ensure Vercel Blob is properly configured with BLOB_READ_WRITE_TOKEN environment variable.'
+            },
             { status: 500 }
         );
     }

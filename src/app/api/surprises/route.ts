@@ -1,56 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { kv } from '@vercel/kv';
 import { generateUniqueId } from '@/lib/utils';
 import { Surprise } from '@/lib/templates';
 
-const DATA_FILE = path.join(process.cwd(), 'src/data/surprises.json');
-
-// Ensure data directory and file exist
-async function ensureDataFile() {
-    const dataDir = path.dirname(DATA_FILE);
-    try {
-        await fs.access(dataDir);
-    } catch {
-        await fs.mkdir(dataDir, { recursive: true });
-    }
-    try {
-        await fs.access(DATA_FILE);
-    } catch {
-        await fs.writeFile(DATA_FILE, JSON.stringify([], null, 2));
-    }
-}
-
-// Read all surprises
-async function readSurprises(): Promise<Surprise[]> {
-    await ensureDataFile();
-    const data = await fs.readFile(DATA_FILE, 'utf-8');
-    return JSON.parse(data);
-}
-
-// Write surprises
-async function writeSurprises(surprises: Surprise[]): Promise<void> {
-    await ensureDataFile();
-    await fs.writeFile(DATA_FILE, JSON.stringify(surprises, null, 2));
-}
+// Key prefix for surprises in KV store
+const SURPRISE_PREFIX = 'surprise:';
 
 // GET - Retrieve a surprise by ID
 export async function GET(request: NextRequest) {
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id');
+    try {
+        const { searchParams } = new URL(request.url);
+        const id = searchParams.get('id');
 
-    if (!id) {
-        return NextResponse.json({ error: 'Surprise ID required' }, { status: 400 });
+        if (!id) {
+            return NextResponse.json({ error: 'Surprise ID required' }, { status: 400 });
+        }
+
+        const surprise = await kv.get<Surprise>(`${SURPRISE_PREFIX}${id}`);
+
+        if (!surprise) {
+            return NextResponse.json({ error: 'Surprise not found' }, { status: 404 });
+        }
+
+        return NextResponse.json(surprise);
+    } catch (error) {
+        console.error('Error fetching surprise:', error);
+        return NextResponse.json(
+            { error: 'Failed to fetch surprise. Please check your KV configuration.' },
+            { status: 500 }
+        );
     }
-
-    const surprises = await readSurprises();
-    const surprise = surprises.find(s => s.id === id);
-
-    if (!surprise) {
-        return NextResponse.json({ error: 'Surprise not found' }, { status: 404 });
-    }
-
-    return NextResponse.json(surprise);
 }
 
 // POST - Create a new surprise
@@ -82,15 +61,22 @@ export async function POST(request: NextRequest) {
             ...(musicUrl && { musicUrl })
         };
 
-        const surprises = await readSurprises();
-        surprises.push(surprise);
-        await writeSurprises(surprises);
+        // Store in Vercel KV
+        await kv.set(`${SURPRISE_PREFIX}${surprise.id}`, surprise);
 
         return NextResponse.json({ id: surprise.id, success: true });
     } catch (error) {
         console.error('Error creating surprise:', error);
+
+        // Provide more helpful error message
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+
         return NextResponse.json(
-            { error: 'Failed to create surprise' },
+            {
+                error: 'Failed to create surprise',
+                details: process.env.NODE_ENV === 'development' ? errorMessage : undefined,
+                hint: 'Ensure Vercel KV is properly configured with KV_REST_API_URL and KV_REST_API_TOKEN environment variables.'
+            },
             { status: 500 }
         );
     }
