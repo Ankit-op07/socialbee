@@ -409,14 +409,43 @@ export default function CreateSurprisePage() {
         );
     }
 
-    // Handle image file selection
-    const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Compress image to a smaller size for URL encoding
+    const compressImage = (file: File, maxWidth: number = 400, quality: number = 0.6): Promise<string> => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new window.Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    if (width > maxWidth) {
+                        height = (height * maxWidth) / width;
+                        width = maxWidth;
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    if (ctx) {
+                        ctx.drawImage(img, 0, 0, width, height);
+                        resolve(canvas.toDataURL('image/jpeg', quality));
+                    } else {
+                        resolve(e.target?.result as string);
+                    }
+                };
+                img.src = e.target?.result as string;
+            };
+            reader.readAsDataURL(file);
+        });
+    };
+
+    // Handle image file selection with compression
+    const handleImageSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
             setImageFile(file);
-            const reader = new FileReader();
-            reader.onloadend = () => setImagePreview(reader.result as string);
-            reader.readAsDataURL(file);
+            const compressed = await compressImage(file);
+            setImagePreview(compressed);
         }
     };
 
@@ -436,32 +465,15 @@ export default function CreateSurprisePage() {
             let imageUrl: string | undefined;
             let musicUrl: string | undefined;
 
-            // Upload files first if present
-            if (imageFile || musicFile) {
-                console.log('Uploading files...', { imageFile: imageFile?.name, musicFile: musicFile?.name });
-                const uploadFormData = new FormData();
-                if (imageFile) uploadFormData.append('image', imageFile);
-                if (musicFile) uploadFormData.append('music', musicFile);
-
-                const uploadResponse = await fetch('/api/upload', {
-                    method: 'POST',
-                    body: uploadFormData
-                });
-                const uploadData = await uploadResponse.json();
-                console.log('Upload response:', uploadData);
-                if (uploadResponse.ok) {
-                    if (uploadData.imageUrl) imageUrl = uploadData.imageUrl;
-                    if (uploadData.musicUrl) musicUrl = uploadData.musicUrl;
-                } else {
-                    console.error('Upload failed:', uploadData.error);
-                }
+            // Use compressed base64 image directly (no server upload needed)
+            if (imagePreview) {
+                imageUrl = imagePreview;
             }
 
-            // If no uploaded music, check for library track
-            if (!musicUrl && selectedLibraryTrack) {
+            // Check for library track
+            if (selectedLibraryTrack) {
                 const libraryTrack = musicLibrary.find((t: MusicTrack) => t.id === selectedLibraryTrack);
                 if (libraryTrack) {
-                    // Store the audio URL directly
                     musicUrl = libraryTrack.audioUrl;
                 }
             }
@@ -473,7 +485,6 @@ export default function CreateSurprisePage() {
                 message: formData.message
             };
 
-            // Add uploaded file URLs
             if (imageUrl) payload.imageUrl = imageUrl;
             if (musicUrl) payload.musicUrl = musicUrl;
 
